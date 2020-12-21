@@ -1,7 +1,7 @@
 import Component from '../component/Component';
 import { weightType } from '../state/app.data';
 
-class CategorieList extends Component {
+class CategoryList extends Component {
   _parentElement = '';
 
   _generateMarkup() {
@@ -43,4 +43,4 @@ class CategorieList extends Component {
   }
 }
 
-export default new CategorieList();
+export default new CategoryList();

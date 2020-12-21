@@ -14,6 +14,7 @@ const categoriesNames = [
   'pasta and grains',
   'books and magazines',
 ];
+categoriesNames.sort();
 
 const weightType = {
   quantity: 'quantity',

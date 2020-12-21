@@ -1,4 +1,4 @@
-import categorieList from '../categorieList/CategorieList.component';
+import categoryList from '../categoryList/CategoryList.component';
 import Component from '../component/Component';
 import emptyList from '../emptyList/EmptyList.component';
 import listSummary from '../listSummary/ListSummary.component';
@@ -37,7 +37,7 @@ class ProductList extends Component {
     const categoriesWithElements = this._getCategoriesWithElements();
 
     const categoriesMarkup = categoriesWithElements.map((categorieData) => {
-      return categorieList.render(categorieData, false);
+      return categoryList.render(categorieData, false);
     });
     const summaryMarkup = listSummary.render(this._data, false);
 
