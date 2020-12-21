@@ -11,18 +11,21 @@ body {
   min-height: 100vh;
 }
 
+main {
+  padding-bottom: 5rem;
+}
+
+/* Section header */
+
 .header {
-  background-color: $primary;
+  background: $primary;
+  background: $header-gradient;
   &__title {
     font-family: $font-heading;
   }
 }
 
-main {
-  padding-bottom: 5rem;
-}
-
-// form
+/* Form section */
 .title {
   font-family: $font-heading;
 }
@@ -32,7 +35,7 @@ main {
   top: -0.75rem;
 }
 
-// select
+/* Select section */
 .form-select {
   background-color: $light;
   &:focus {
@@ -40,7 +43,7 @@ main {
   }
 }
 
-// errorBox
+/* Error Box */
 .errorBox {
   padding: 1rem;
   ul {
@@ -50,7 +53,7 @@ main {
   }
 }
 
-// list
+/* Product list */
 .category-title {
   @extend .title;
   color: $primary;
@@ -69,7 +72,7 @@ main {
   }
 }
 
-// footer
+/* Footer section */
 .footer {
   background-color: white;
 
@@ -79,7 +82,11 @@ main {
   }
 }
 
-// icon
+/* Utilities */
+.rounded-4 {
+  border-radius: $border-radius-xxlg;
+}
+
 .icon {
   color: $color-active;
   margin: 0 0.5rem;
