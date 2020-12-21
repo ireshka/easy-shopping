@@ -13,6 +13,7 @@ const controlAddProduct = (formValues) => {
   if (validateErrors.length) {
     return form.renderError(validateErrors);
   }
+  form.clearForm();
 
   console.log('No errors in form - start making list');
   AppStateManager.addProduct(formValues);

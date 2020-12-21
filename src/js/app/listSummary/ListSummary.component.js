@@ -3,23 +3,23 @@ import Component from '../component/Component';
 import { weightType } from '../state/app.data';
 
 class ListSummary extends Component {
+  _getTotalSum(weightType) {
+    const { products } = this._data;
+    const productsTotalSum = products.reduce((acc, { productNumber, productWeightType }) => {
+      if (productWeightType === weightType) {
+        const number = Number.parseFloat(productNumber);
+        return (acc += number);
+      }
+      return 0;
+    }, 0);
+    return productsTotalSum;
+  }
+
   _getListSummary() {
     const { products } = this._data;
     const productsTotal = products.length;
-    const productsTotalItems = products.reduce((acc, { productWeightType, productNumber }) => {
-      if (productWeightType === weightType.quantity) {
-        return (acc += Number.parseFloat(productNumber));
-      }
-      return acc;
-    }, 0);
-    const productsTotalWeight = products.reduce((acc, { productWeightType, productNumber }) => {
-      if (productWeightType === weightType.kilo) {
-        return (acc += Number.parseFloat(productNumber));
-      }
-      return acc;
-    }, 0);
-    console.log(productsTotal);
-    console.log(productsTotalItems);
+    const productsTotalItems = this._getTotalSum(weightType.quantity);
+    const productsTotalWeight = this._getTotalSum(weightType.kilo);
     return {
       productsTotal,
       productsTotalItems,
@@ -29,7 +29,6 @@ class ListSummary extends Component {
 
   _generateMarkup() {
     const { productsTotal, productsTotalItems, productsTotalWeight } = this._getListSummary();
-    console.log(productsTotal);
     const summaryMarkup = `
       <div class="row list-summary">
         <div class="col-sm-11 offset-sm-1">

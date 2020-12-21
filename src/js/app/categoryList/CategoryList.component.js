@@ -12,10 +12,10 @@ class CategoryList extends Component {
       return `
         <li class="list-group-item" data-id=${productID}>
           <div class="row">
-            <div class="col-4 col-sm-6">
+            <div class="col-3 col-sm-6">
               ${productName}
             </div>
-            <div class="col-1 col-sm-2 text-sm-end">
+            <div class="col-2 col-sm-2 text-sm-end">
               ${productNumber}
             </div>
             <div class="col-1">

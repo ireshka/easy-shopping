@@ -31,6 +31,14 @@ const productCategoryValidator = (category) => {
 class Form extends Component {
   _parentElement = document.querySelector('#addProductForm');
 
+  _inputName = this._parentElement.querySelector(`[name="${formFieldNames.pName}"]`);
+
+  _inputNumber = this._parentElement.querySelector(`[name="${formFieldNames.pNumber}"]`);
+
+  _inputWeightType = this._parentElement.querySelector(`[name="${formFieldNames.pWeightType}"]`);
+
+  _selectCategory = this._parentElement.querySelector(`[name="${formFieldNames.pCategory}"]`);
+
   _errorBox = this._parentElement.querySelector('#formErrorBox');
 
   _errorMessage = 'Error during adding product';
@@ -58,6 +66,13 @@ class Form extends Component {
       errorText: 'Choose category',
     },
   ];
+
+  clearForm() {
+    this._inputName.value = '';
+    this._inputNumber.value = '';
+    this._inputWeightType.value = weightType.quantity;
+    this._selectCategory.value = 'Choose category';
+  }
 
   validateForm(formValues) {
     // const formValues = this._getFormValues();
