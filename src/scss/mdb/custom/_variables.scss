@@ -1,13 +1,14 @@
 // Your custom variables
 $body-bg: #c3aed6;
-$primary: #3d0a91;
-$secondary: #4f4074;
-$light: rgba(251, 242, 255, 0.933);
 $border-radius-xlg: 1rem !default;
 $border-radius-xxlg: 1.5rem !default;
+$font-size-small: 0.85rem;
 $header-gradient: linear-gradient(
   97deg,
   rgba(35, 4, 87, 1) 0%,
   rgba(58, 20, 119, 1) 44%,
   rgba(160, 98, 255, 1) 100%
 );
+$light: rgba(251, 242, 255, 0.933);
+$primary: #3d0a91;
+$secondary: #4f4074;

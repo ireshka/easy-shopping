@@ -35,6 +35,17 @@ main {
   top: -0.75rem;
 }
 
+.form-check-input {
+  width: 1rem;
+  height: 1rem;
+}
+
+.form-check-input:checked {
+  + label {
+    text-decoration: line-through;
+  }
+}
+
 /* Select section */
 .form-select {
   background-color: $light;
@@ -90,4 +101,8 @@ main {
 .icon {
   color: $color-active;
   margin: 0 0.5rem;
+}
+
+.fs-7 {
+  font-size: $font-size-small;
 }

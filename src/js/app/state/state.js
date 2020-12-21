@@ -65,16 +65,19 @@ class AppStateManager {
       productObject[fieldName] = fieldValue;
     });
     const productID = this._generateProductId();
+    const productChecked = false;
 
     return {
       ...productObject,
       productID,
+      productChecked,
     };
   }
 
   addProduct(product) {
     console.log('Adding product:');
     const productObject = this._createProductObject(product);
+    console.log(productObject);
     const newState = [...this.state, productObject];
     this.setState(newState);
   }
@@ -87,6 +90,19 @@ class AppStateManager {
 
   editProduct(id) {
     console.log(`Editing product: ${id}`);
+  }
+
+  checkProduct(id) {
+    const newState = this.state.map((product) => {
+      const { productID } = product;
+      if (productID === Number.parseInt(id, 10)) {
+        const { productChecked } = product;
+        const newProductObject = { ...product, productChecked: !productChecked };
+        return newProductObject;
+      }
+      return product;
+    });
+    this.setState(newState);
   }
 }
 

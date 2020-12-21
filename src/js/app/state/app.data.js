@@ -27,6 +27,7 @@ const formFieldNames = {
   pWeightType: 'productWeightType',
   pCategory: 'productCategory',
   pID: 'pID',
+  pChecked: 'productChecked',
 };
 
 const appName = 'easyshopping';

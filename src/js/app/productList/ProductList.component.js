@@ -58,11 +58,21 @@ class ProductList extends Component {
   addHandlerInteractProduct(handler) {
     this._parentElement.addEventListener('click', (event) => {
       const btn = event.target.closest('.btn');
+      if (!btn) return;
       const element = event.target.closest('.list-group-item');
       const { action } = btn.dataset;
       const { id } = element.dataset;
-      if (!btn) return;
       handler({ action, id });
+    });
+  }
+
+  addHandlerCheckProduct(handler) {
+    this._parentElement.addEventListener('change', (event) => {
+      const checkbox = event.target.closest('[type="checkbox"]');
+      if (!checkbox) return;
+      const element = event.target.closest('.list-group-item');
+      const { id } = element.dataset;
+      handler({ id });
     });
   }
 }

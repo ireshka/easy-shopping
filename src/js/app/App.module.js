@@ -37,13 +37,17 @@ const controlUpdateProductList = () => {
   productList.render({ products: state });
 };
 
-const controlInteractProduct = (actionObject) => {
-  const { action, id } = actionObject;
+const controlInteractProduct = ({ action, id }) => {
   if (action === 'delete') {
     AppStateManager.deleteProduct(id);
   } else if (action === 'edit') {
     AppStateManager.editProduct(id);
   }
+};
+
+const controlCheckProduct = ({ id }) => {
+  console.log('Product check');
+  AppStateManager.checkProduct(id);
 };
 
 class App {
@@ -59,6 +63,7 @@ class App {
     productList.addHandlerRender(controlProductList);
     productList.addHandlerUpdate(controlUpdateProductList);
     productList.addHandlerInteractProduct(controlInteractProduct);
+    productList.addHandlerCheckProduct(controlCheckProduct);
   }
 
   _initState() {
