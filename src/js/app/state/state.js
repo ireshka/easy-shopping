@@ -1,4 +1,4 @@
-import { categoriesNames } from './app.data';
+import { categoriesNames, appName } from './app.data';
 
 const generateInitialState = () => {
   const state = [];
@@ -13,7 +13,14 @@ class AppStateManager {
   _state;
 
   init() {
-    this._state = initialState;
+    const isLocalStorage = this._checkLocalStorage();
+    if (isLocalStorage) {
+      const data = this._getLocalStorage();
+      this._state = data;
+      return;
+    }
+    this.setState(initialState);
+    return;
   }
 
   get state() {
@@ -23,12 +30,27 @@ class AppStateManager {
     return this._state;
   }
 
+  _checkLocalStorage() {
+    const isKey = localStorage.getItem(appName);
+    return !!isKey;
+  }
+
+  _saveLocalStorage(data) {
+    const newStorageContent = JSON.stringify(data);
+    localStorage.setItem(appName, newStorageContent);
+  }
+
+  _getLocalStorage() {
+    const storageContent = localStorage.getItem(appName);
+    const storageObject = JSON.parse(storageContent);
+    return storageObject;
+  }
+
   setState(newState) {
     this._state = newState;
-    console.log('New state:');
-    console.log(this._state);
+    this._saveLocalStorage(newState);
     const eventFired = dispatchEvent(stateUpdated);
-    console.log(`Event fired: ${eventFired}`);
+    console.log(`State changed: ${eventFired}`);
   }
 
   _generateProductId() {
@@ -51,9 +73,8 @@ class AppStateManager {
   }
 
   addProduct(product) {
-    console.log('New product:');
+    console.log('Adding product:');
     const productObject = this._createProductObject(product);
-    console.log(productObject);
     const newState = [...this.state, productObject];
     this.setState(newState);
   }
@@ -61,8 +82,6 @@ class AppStateManager {
   deleteProduct(id) {
     console.log(`Deleting product: ${id}`);
     const newState = this.state.filter(({ productID }) => productID !== Number.parseInt(id, 10));
-    console.log('New state after deleting');
-    console.log(newState);
     this.setState(newState);
   }
 

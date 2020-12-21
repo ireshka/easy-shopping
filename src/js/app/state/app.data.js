@@ -29,4 +29,6 @@ const formFieldNames = {
   pID: 'pID',
 };
 
-export { categoriesNames, weightType, formFieldNames };
+const appName = 'easyshopping';
+
+export { categoriesNames, weightType, formFieldNames, appName };
