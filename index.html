@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Your shopping list</title>
+    <!-- Favicon -->
+    <link rel="icon" href="img/basket.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Main css file -->
+    <link rel="stylesheet" href="css/index.min.css" />
+    <!-- Custom styles -->
+    <style></style>
+  </head>
+
+  <body class="position-relative">
+    <header class="header pt-4 pb-3 shadow-2-strong">
+      <div class="container">
+        <h1 class="header__title fs-1 text-light">
+          Your shopping list <span class="fas fa-shopping-basket icon text-light"></span>
+        </h1>
+      </div>
+    </header>
+    <main class="pt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col errorBox" id="errorBox"></div>
+        </div>
+        <div class="row gy-5 justify-content-center">
+          <div class="col-md-9 col-lg-6 col-xxl-5">
+            <!-- Form component -->
+            <form
+              class="position-relative bg-light pt-5 pb-3 px-3 px-sm-5 rounded-4 shadow-3-strong"
+              id="addProductForm"
+            >
+              <h2 class="position-absolute block-title text-primary">Add product</h2>
+              <!-- Product name input -->
+              <div class="form-outline mb-4">
+                <input
+                  type="text"
+                  id="productName"
+                  name="productName"
+                  class="form-control"
+                  autocomplete="off"
+                />
+                <label class="form-label" for="productName">What product do you need?</label>
+              </div>
+              <!-- Quantity / amount section -->
+              <div class="row gx-2">
+                <!-- Product name number -->
+                <div class="col-sm-5 col-lg-4">
+                  <div class="form-outline mb-4">
+                    <input
+                      type="number"
+                      id="productNumber"
+                      name="productNumber"
+                      class="form-control"
+                      step="0.25"
+                      min="0.25"
+                      max="100"
+                    />
+                    <label class="form-label" for="productNumber">Enter number</label>
+                  </div>
+                </div>
+                <!-- Product weight type  radio -->
+                <div class="col-sm-7 col-lg-8 d-flex justify-content-sm-end">
+                  <div class="form-outline mb-4">
+                    <div class="btn-group">
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        name="productWeightType"
+                        id="quantity"
+                        autocomplete="off"
+                        value="quantity"
+                        checked
+                      />
+                      <label class="btn btn-outline-secondary" for="quantity">Quantity</label>
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        name="productWeightType"
+                        id="weightkilo"
+                        autocomplete="off"
+                        value="weightkilo"
+                      />
+                      <label class="btn btn-outline-secondary" for="weightkilo">Weight (kg)</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Category select -->
+              <div class="mb-4">
+                <select
+                  class="form-select"
+                  aria-label="Category"
+                  id="productCategory"
+                  name="productCategory"
+                >
+                  <option selected>Choose category</option>
+                </select>
+              </div>
+              <div class="col">
+                <div class="errorBox alert alert-danger d-none" id="formErrorBox"></div>
+              </div>
+              <button type="submit" class="btn btn-secondary">Add product</button>
+            </form>
+          </div>
+          <div class="col-md-9 col-lg-6 col-xxl-5">
+            <!-- Product list component -->
+            <div
+              class="position-relative bg-light py-5 px-3 px-sm-4 px-lg-5 rounded-4 shadow-3-strong"
+            >
+              <h2 class="position-absolute block-title text-primary">Remember to buy</h2>
+              <div id="productList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="footer position-absolute bottom-0 start-0 end-0 pt-3">
+      <div class="container-md">
+        <p class="footer__text text-center">
+          Coded with <span class="icon fas fa-mug-hot" title="coffee"></span> by
+          <a class="footer__link" href="https://github.com/ireshka">@ireshka</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
+  <!-- Main js file -->
+  <script type="text/javascript" src="js/index.min.js"></script>
+  <!-- Custom scripts -->
+  <script type="text/javascript"></script>
+</html>
