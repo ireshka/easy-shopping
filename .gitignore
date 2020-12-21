@@ -1,0 +1,52 @@
+# dependencies npm
+node_modules/
+
+# dependencies yarn v2
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
+
+# editors
+.idea/
+.vscode/
+
+# sass
+sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
+# todo files
+*.todo.md
+
+# windows & Mac files
+[Tt]humb.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# logs ant temp
+*.[Tt]mp
+*.[Ll]og
+
+# cache
+.npm/
+.eslintcache/
+
+# env
+.env
+.env.test
+
+# parcel related
+.cache/
+.parcel-cache/
+
+# default output directories
+dist/
+out/
+build/
+develop/
+
+# jest related
+coverage/

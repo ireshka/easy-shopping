@@ -1,0 +1,86 @@
+@import './mdb/mdb.free.scss';
+
+$color-active: rgb(53, 29, 97);
+$font-heading: 'Pacifico', sans-serif;
+
+html {
+  background-color: $body-bg;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.header {
+  background-color: $primary;
+  &__title {
+    font-family: $font-heading;
+  }
+}
+
+main {
+  padding-bottom: 5rem;
+}
+
+// form
+.title {
+  font-family: $font-heading;
+}
+
+.block-title {
+  @extend .title;
+  top: -0.75rem;
+}
+
+// select
+.form-select {
+  background-color: $light;
+  &:focus {
+    box-shadow: 0 0 0 1px $primary;
+  }
+}
+
+// errorBox
+.errorBox {
+  padding: 1rem;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-position: inside;
+  }
+}
+
+// list
+.category-title {
+  @extend .title;
+  color: $primary;
+}
+
+@include media-breakpoint-up(md) {
+  .block-title {
+    top: -1.25rem;
+  }
+}
+
+.list-summary {
+  p {
+    line-height: 1.5rem;
+    margin: 0;
+  }
+}
+
+// footer
+.footer {
+  background-color: white;
+
+  &__link {
+    color: $color-active;
+    margin-left: 0.5rem;
+  }
+}
+
+// icon
+.icon {
+  color: $color-active;
+  margin: 0 0.5rem;
+}
