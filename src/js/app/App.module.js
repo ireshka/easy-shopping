@@ -7,6 +7,10 @@ import appStateManager from './state/AppStateManager';
 const selectAddForm = new Select('productCategory');
 const selectEditForm = new Select('editProductCategory');
 
+const controlSelect = (selectObject) => {
+  selectObject.render(null, true, true);
+};
+
 const controlAddProduct = (formValues) => {
   const validateErrors = form.validateForm(formValues);
   if (validateErrors.length) {
@@ -16,18 +20,6 @@ const controlAddProduct = (formValues) => {
 
   appStateManager.addProduct(formValues);
   return true;
-};
-
-const controlEditProduct = (formValues) => {
-  const validateErrors = form.validateForm(formValues);
-  if (validateErrors.length) {
-    formEdit.renderError(validateErrors);
-  } else {
-    formEdit.clearForm();
-    const { editedProductID } = formEdit;
-    appStateManager.editProduct(formValues, editedProductID);
-    formEdit.closeForm();
-  }
 };
 
 const controlFillForm = () => {
@@ -61,8 +53,21 @@ const controlCheckProduct = ({ id }) => {
   appStateManager.checkProduct(id);
 };
 
-const controlSelect = (selectObject) => {
-  selectObject.render(null, true, true);
+const controlPrintList = () => {
+  console.log('you want print, ho?');
+  window.print();
+};
+
+const controlEditProduct = (formValues) => {
+  const validateErrors = form.validateForm(formValues);
+  if (validateErrors.length) {
+    formEdit.renderError(validateErrors);
+  } else {
+    formEdit.clearForm();
+    const { editedProductID } = formEdit;
+    appStateManager.editProduct(formValues, editedProductID);
+    formEdit.closeForm();
+  }
 };
 
 class App {
@@ -80,6 +85,7 @@ class App {
     productList.addHandlerUpdate(controlUpdateProductList);
     productList.addHandlerInteractProduct(controlInteractProduct);
     productList.addHandlerCheckProduct(controlCheckProduct);
+    productList.addHandlerPrintList(controlPrintList);
     formEdit.addHandlerSendProduct(controlEditProduct);
   }
 

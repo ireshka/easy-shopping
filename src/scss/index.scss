@@ -4,11 +4,18 @@ $color-active: rgb(53, 29, 97);
 $font-heading: 'Pacifico', sans-serif;
 
 html {
-  background-color: $body-bg;
+  @media print {
+    background-color: $white;
+  }
 }
 
 body {
+  background-color: $body-bg;
   min-height: 100vh;
+
+  @media print {
+    background-color: $white;
+  }
 }
 
 main {
@@ -20,8 +27,56 @@ main {
 .header {
   background: $primary;
   background: $header-gradient;
-  &__title {
+
+  @media print {
+    background: $white;
+  }
+
+  &-title {
     font-family: $font-heading;
+
+    @media print {
+      color: $black !important; // sorry Bootstrap feels important too
+    }
+
+    .icon {
+      @media print {
+        color: $black !important; // sorry Bootstrap feels important too
+      }
+    }
+  }
+}
+
+/* Block */
+
+.block {
+  &-title {
+    @extend .title;
+    top: -0.75rem;
+    @media print {
+      color: black !important;
+    }
+  }
+
+  &-container {
+    @media print {
+      background-color: $white !important;
+      columns: auto 2;
+      height: 100%;
+    }
+  }
+
+  &-category {
+    @media print {
+      column-span: none;
+      break-inside: avoid;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .block-title {
+    top: -1.25rem;
   }
 }
 
@@ -30,9 +85,21 @@ main {
   font-family: $font-heading;
 }
 
-.block-title {
-  @extend .title;
+.btn-print {
   top: -0.75rem;
+  right: 1 * $spacer;
+}
+
+@include media-breakpoint-up(sm) {
+  .btn-print {
+    right: 1.5 * $spacer;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .btn-print {
+    right: 3 * $spacer;
+  }
 }
 
 .form-check-input {
@@ -68,11 +135,8 @@ main {
 .category-title {
   @extend .title;
   color: $primary;
-}
-
-@include media-breakpoint-up(md) {
-  .block-title {
-    top: -1.25rem;
+  @media print {
+    color: black !important;
   }
 }
 
@@ -80,6 +144,30 @@ main {
   p {
     line-height: 1.5rem;
     margin: 0;
+  }
+
+  strong {
+    @media print {
+      color: black !important;
+    }
+  }
+}
+
+.list-column {
+  &-name {
+    @media print {
+      width: 70%;
+    }
+  }
+  &-number {
+    @media print {
+      width: 20%;
+    }
+  }
+  &-weight {
+    @media print {
+      width: 10%;
+    }
   }
 }
 
@@ -103,6 +191,17 @@ main {
   margin: 0 0.5rem;
 }
 
+.btn-floating {
+  &:hover {
+    box-shadow: $box-shadow-1-strong;
+  }
+  &:focus {
+    color: white;
+    background-color: $primary;
+  }
+}
+
+// expand bootstrap font-size
 .fs-7 {
   font-size: $font-size-small;
 }

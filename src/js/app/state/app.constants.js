@@ -7,6 +7,7 @@ const categoriesNames = [
   'vegetables',
   'frozen food',
   'household',
+  'other',
   'personal care',
   'spices & herbs',
   'snacks',

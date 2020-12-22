@@ -1,5 +1,6 @@
 import Component from '../component/Component';
 import { weightType } from '../state/app.constants';
+import interactButtons from '../interactButtons/interactButtons.view';
 
 class CategoryList extends Component {
   _parentElement = '';
@@ -12,35 +13,27 @@ class CategoryList extends Component {
       return `
         <li class="list-group-item px-2 px-sm-3" data-id=${productID}>
           <div class="row gx-1 align-items-center">
-            <div class="col-5 col-sm-6 d-flex align-items-center flex-shrink-0">
-              <input class="form-check-input my-0 me-2" type="checkbox"
-              ${productChecked ? 'checked' : ''}
-              id="check-${productID}">
+            <div class="col-5 col-sm-6 d-flex align-items-center flex-shrink-0 list-column-name">
+              <input class="form-check-input my-0 me-2" type="checkbox" aria-label="Check/Uncheck product"
+              ${productChecked ? 'checked' : ''} id="check-${productID}">
               <label class="form-check-label lh-1 d-block fs-6" for="check-${productID}">
                 ${productName}
               </label>
             </div>
-            <div class="col-2 col-sm-2 text-end fs-7 fst-italic">
+            <div class="col-2 col-sm-2 text-end fs-7 fst-italic list-column-number">
               ${productNumber}
             </div>
-            <div class="col-1 fs-7 fst-italic">
+            <div class="col-1 fs-7 fst-italic list-column-weight">
               ${productWeightType === weightType.kilo ? 'kg' : 'pc'}
             </div>
-            <div class="col-4 col-sm-3 d-flex justify-content-end">
-              <button type="button" class="btn btn-outline-secondary btn-floating btn-sm btn-control" 
-              data-action="edit"
-              data-mdb-toggle="modal" data-mdb-target="#editProductModal">
-                <span class="fas fa-pen" title="edit"></span>
-              </button>
-              <button type="button" data-action="delete" class="btn btn-outline-secondary btn-floating btn-sm btn-control ms-2">
-                <span class="fas fa-trash" title="delete"></span>
-              </button>
+            <div class="col-4 col-sm-3 d-flex justify-content-end d-print-none">
+              ${interactButtons}
           </div>
           </div>
         </li>`;
     });
     return `
-      <div class="mb-3">
+      <div class="mb-3 block-category">
         ${categoryHeading}
         <ul class="list-group">
           ${categoryElements.join('')}

@@ -1,11 +1,13 @@
 import categoryList from '../categoryList/CategoryList.component';
 import Component from '../component/Component';
-import emptyList from '../emptyList/EmptyList.component';
+import emptyList from '../emptyList/EmptyList.view';
 import listSummary from '../listSummary/ListSummary.component';
 import { categoriesNames, formFieldNames } from '../state/app.constants';
 
 class ProductList extends Component {
   _parentElement = document.querySelector('#productList');
+
+  _printBtn = document.querySelector('#printButton');
 
   _errorMessage = 'Error during display product list';
 
@@ -64,6 +66,10 @@ class ProductList extends Component {
       const { id } = element.dataset;
       handler({ action, id });
     });
+  }
+
+  addHandlerPrintList(handler) {
+    this._printBtn.addEventListener('click', handler);
   }
 
   addHandlerCheckProduct(handler) {

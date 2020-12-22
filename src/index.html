@@ -26,14 +26,14 @@
     <!-- Header -->
     <header class="header pt-4 pb-3 shadow-2-strong">
       <div class="container">
-        <h1 class="header__title fs-1 text-light">
+        <h1 class="header-title fs-1 text-light">
           Your shopping list <span class="fas fa-shopping-basket icon text-light"></span>
         </h1>
       </div>
     </header>
     <!-- Modal -->
     <div
-      class="modal fade bg-secondary"
+      class="modal fade bg-secondary d-print-none"
       id="editProductModal"
       tabindex="-1"
       aria-labelledby="editProductModalLabel"
@@ -146,15 +146,16 @@
     </div>
     <main class="pt-5">
       <div class="container">
-        <div class="row">
+        <div class="row d-print-none">
           <div class="col errorBox" id="errorBox"></div>
         </div>
         <div class="row gy-5 justify-content-center">
-          <div class="col-md-9 col-lg-6 col-xxl-5">
+          <div class="col-md-9 col-lg-6 col-xxl-5 d-print-none">
             <!-- Form component -->
             <form
               class="position-relative bg-light pt-5 pb-3 px-3 px-sm-5 rounded-4 shadow-3-strong"
               id="addProductForm"
+              style="min-height: 18rem"
             >
               <h2 class="position-absolute block-title text-primary">Add product</h2>
               <!-- Product name input -->
@@ -232,9 +233,18 @@
           <div class="col-md-9 col-lg-6 col-xxl-5">
             <!-- Product list component -->
             <div
-              class="position-relative bg-light py-5 px-3 px-sm-4 px-lg-5 rounded-4 shadow-3-strong"
+              class="position-relative bg-light py-5 px-3 px-sm-4 px-lg-5 rounded-4 shadow-3-strong block-container"
+              style="min-height: 18rem"
             >
               <h2 class="position-absolute block-title text-primary">Remember to buy</h2>
+              <button
+                type="button"
+                data-action="print"
+                class="btn btn-outline-secondary btn-floating btn-control ms-2 position-absolute btn-print btn-lg d-print-none"
+                id="printButton"
+              >
+                <span class="fas fa-print" title="print"></span>
+              </button>
               <div id="productList"></div>
             </div>
           </div>
@@ -242,7 +252,7 @@
       </div>
     </main>
     <!-- Footer -->
-    <footer class="footer position-absolute bottom-0 start-0 end-0 pt-3">
+    <footer class="footer position-absolute bottom-0 start-0 end-0 pt-3 d-print-none">
       <div class="container-md">
         <p class="footer__text text-center">
           Coded with <span class="icon fas fa-mug-hot" title="coffee"></span> by
