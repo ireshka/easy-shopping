@@ -1,4 +1,4 @@
-import { categoriesNames, appName } from './app.data';
+import { categoriesNames, appName } from './app.constants';
 
 const generateInitialState = () => {
   const state = [];
@@ -49,8 +49,7 @@ class AppStateManager {
   setState(newState) {
     this._state = newState;
     this._saveLocalStorage(newState);
-    const eventFired = dispatchEvent(stateUpdated);
-    console.log(`State changed: ${eventFired}`);
+    dispatchEvent(stateUpdated);
   }
 
   _generateProductId() {
@@ -59,11 +58,12 @@ class AppStateManager {
     return productID + 1;
   }
 
-  _createProductObject(dataObject) {
+  _createProductObject(dataObject, update = false) {
     const productObject = {};
     dataObject.forEach(({ fieldName, fieldValue }) => {
       productObject[fieldName] = fieldValue;
     });
+    if (update) return productObject;
     const productID = this._generateProductId();
     const productChecked = false;
 
@@ -75,21 +75,27 @@ class AppStateManager {
   }
 
   addProduct(product) {
-    console.log('Adding product:');
     const productObject = this._createProductObject(product);
-    console.log(productObject);
     const newState = [...this.state, productObject];
     this.setState(newState);
   }
 
   deleteProduct(id) {
-    console.log(`Deleting product: ${id}`);
     const newState = this.state.filter(({ productID }) => productID !== Number.parseInt(id, 10));
     this.setState(newState);
   }
 
-  editProduct(id) {
-    console.log(`Editing product: ${id}`);
+  editProduct(newFormData, id) {
+    const newDataObject = this._createProductObject(newFormData, true);
+    const newState = this.state.map((product) => {
+      const { productID } = product;
+      if (productID === Number.parseInt(id, 10)) {
+        const newProductObject = { ...product, ...newDataObject };
+        return newProductObject;
+      }
+      return product;
+    });
+    this.setState(newState);
   }
 
   checkProduct(id) {
@@ -103,6 +109,11 @@ class AppStateManager {
       return product;
     });
     this.setState(newState);
+  }
+
+  getProduct(id) {
+    const [product] = this.state.filter(({ productID }) => productID === Number.parseInt(id, 10));
+    return product;
   }
 }
 

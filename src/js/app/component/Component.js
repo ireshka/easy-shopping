@@ -35,7 +35,6 @@ export default class Component {
   }
 
   renderError(message = this._errorMessage) {
-    console.log(this._errorMesage);
     this.clearError();
     let markup;
     if (Array.isArray(message) && message.length > 1) {

@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import Component from '../component/Component';
-import { weightType } from '../state/app.data';
+import { weightType } from '../state/app.constants';
 
 class ListSummary extends Component {
   _getTotalSum(weightType) {

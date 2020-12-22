@@ -12,7 +12,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
     />
-    <!-- Google Fonts Roboto -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;400;500;700&display=swap"
@@ -20,11 +20,10 @@
     />
     <!-- Main css file -->
     <link rel="stylesheet" href="css/index.min.css" />
-    <!-- Custom styles -->
-    <style></style>
   </head>
 
   <body class="position-relative">
+    <!-- Header -->
     <header class="header pt-4 pb-3 shadow-2-strong">
       <div class="container">
         <h1 class="header__title fs-1 text-light">
@@ -32,6 +31,119 @@
         </h1>
       </div>
     </header>
+    <!-- Modal -->
+    <div
+      class="modal fade bg-secondary"
+      id="editProductModal"
+      tabindex="-1"
+      aria-labelledby="editProductModalLabel"
+      aria-hidden="true"
+      role="dialog"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content bg-light">
+          <div class="modal-body">
+            <div class="text-end">
+              <button
+                type="button"
+                class="btn-close"
+                data-mdb-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="row gy-5 justify-content-center">
+              <!-- Form component -->
+              <div class="col">
+                <form
+                  class="position-relative bg-light pt-5 pb-3 px-3 px-sm-5 rounded-4 shadow-3-strong"
+                  id="editProductForm"
+                >
+                  <h2 class="position-absolute block-title text-primary" id="editProductModalLabel">
+                    Edit product
+                  </h2>
+                  <!-- Product name input -->
+                  <div class="form-outline mb-4">
+                    <input
+                      type="text"
+                      id="editProductName"
+                      name="productName"
+                      class="form-control"
+                      autocomplete="off"
+                    />
+                    <label class="form-label" for="editProductName"
+                      >What product do you need?</label
+                    >
+                  </div>
+                  <!-- Quantity / amount section -->
+                  <div class="row gx-2">
+                    <!-- Product name number -->
+                    <div class="col-md-4">
+                      <div class="form-outline mb-4">
+                        <input
+                          type="number"
+                          id="editProductNumber"
+                          name="productNumber"
+                          class="form-control"
+                          step="0.25"
+                          min="0.25"
+                          max="100"
+                        />
+                        <label class="form-label" for="editProductNumber">Enter number</label>
+                      </div>
+                    </div>
+                    <!-- Product weight type  radio -->
+                    <div class="col-md-8 d-flex justify-content-md-end">
+                      <div class="form-outline mb-4">
+                        <div class="btn-group">
+                          <input
+                            type="radio"
+                            class="btn-check"
+                            name="productWeightType"
+                            id="editQuantity"
+                            autocomplete="off"
+                            value="quantity"
+                            checked
+                          />
+                          <label class="btn btn-outline-secondary" for="editQuantity"
+                            >Quantity</label
+                          >
+                          <input
+                            type="radio"
+                            class="btn-check"
+                            name="productWeightType"
+                            id="editWeightkilo"
+                            autocomplete="off"
+                            value="weightkilo"
+                          />
+                          <label class="btn btn-outline-secondary" for="editWeightkilo"
+                            >Weight (kg)</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Category select -->
+                  <div class="mb-4">
+                    <select
+                      class="form-select"
+                      aria-label="Category"
+                      id="editProductCategory"
+                      name="productCategory"
+                    >
+                      <option selected>Choose category</option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <div class="errorBox alert alert-danger d-none" id="editFormErrorBox"></div>
+                  </div>
+                  <button type="submit" class="btn btn-secondary">Edit product</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <main class="pt-5">
       <div class="container">
         <div class="row">
@@ -141,6 +253,4 @@
   </body>
   <!-- Main js file -->
   <script type="text/javascript" src="js/index.min.js"></script>
-  <!-- Custom scripts -->
-  <script type="text/javascript"></script>
 </html>

@@ -1,13 +1,16 @@
 import Component from '../component/Component';
-import { categoriesNames } from '../state/app.data';
+import { categoriesNames } from '../state/app.constants';
 
 class Select extends Component {
-  _parentElement = document.querySelector('#productCategory');
+  constructor(idName) {
+    super();
+    this._parentElement = document.querySelector(`#${idName}`);
+  }
 
   _errorMessage = 'No product categories';
 
   addHandlerRender(handler) {
-    window.addEventListener('DOMContentLoaded', handler);
+    window.addEventListener('DOMContentLoaded', handler(this));
   }
 
   _generateMarkup() {
@@ -23,4 +26,4 @@ class Select extends Component {
   }
 }
 
-export default new Select();
+export default Select;

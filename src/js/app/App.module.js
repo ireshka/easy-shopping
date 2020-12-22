@@ -1,23 +1,33 @@
 import form from './form/Form.component';
+import formEdit from './formEditProduct/FormEditProduct.component';
 import productList from './productList/ProductList.component';
-import select from './select/Select.component';
-import AppStateManager from './state/state';
+import Select from './select/Select.component';
+import appStateManager from './state/AppStateManager';
 
-const controlSelectOptions = () => {
-  select.render(null, true, true);
-};
+const selectAddForm = new Select('productCategory');
+const selectEditForm = new Select('editProductCategory');
 
 const controlAddProduct = (formValues) => {
-  console.log('You send form');
   const validateErrors = form.validateForm(formValues);
   if (validateErrors.length) {
     return form.renderError(validateErrors);
   }
   form.clearForm();
 
-  console.log('No errors in form - start making list');
-  AppStateManager.addProduct(formValues);
+  appStateManager.addProduct(formValues);
   return true;
+};
+
+const controlEditProduct = (formValues) => {
+  const validateErrors = form.validateForm(formValues);
+  if (validateErrors.length) {
+    formEdit.renderError(validateErrors);
+  } else {
+    formEdit.clearForm();
+    const { editedProductID } = formEdit;
+    appStateManager.editProduct(formValues, editedProductID);
+    formEdit.closeForm();
+  }
 };
 
 const controlFillForm = () => {
@@ -27,27 +37,32 @@ const controlFillForm = () => {
 };
 
 const controlProductList = () => {
-  const { state } = AppStateManager;
+  const { state } = appStateManager;
   productList.render({ products: state });
 };
 
 const controlUpdateProductList = () => {
-  console.log('Register state update');
-  const { state } = AppStateManager;
+  const { state } = appStateManager;
   productList.render({ products: state });
 };
 
 const controlInteractProduct = ({ action, id }) => {
   if (action === 'delete') {
-    AppStateManager.deleteProduct(id);
-  } else if (action === 'edit') {
-    AppStateManager.editProduct(id);
+    appStateManager.deleteProduct(id);
+  }
+  if (action === 'edit') {
+    const product = appStateManager.getProduct(id);
+    formEdit.fillForm(product);
+    formEdit.addEditedProductId(id);
   }
 };
 
 const controlCheckProduct = ({ id }) => {
-  console.log('Product check');
-  AppStateManager.checkProduct(id);
+  appStateManager.checkProduct(id);
+};
+
+const controlSelect = (selectObject) => {
+  selectObject.render(null, true, true);
 };
 
 class App {
@@ -57,17 +72,19 @@ class App {
   }
 
   _initComponents() {
-    select.addHandlerRender(controlSelectOptions);
-    form.addHandlerAddProduct(controlAddProduct);
+    selectAddForm.addHandlerRender(controlSelect);
+    selectEditForm.addHandlerRender(controlSelect);
+    form.addHandlerSendProduct(controlAddProduct);
     form.addHandlerFillForm(controlFillForm);
     productList.addHandlerRender(controlProductList);
     productList.addHandlerUpdate(controlUpdateProductList);
     productList.addHandlerInteractProduct(controlInteractProduct);
     productList.addHandlerCheckProduct(controlCheckProduct);
+    formEdit.addHandlerSendProduct(controlEditProduct);
   }
 
   _initState() {
-    AppStateManager.init();
+    appStateManager.init();
   }
 }
 

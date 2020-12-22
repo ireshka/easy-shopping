@@ -2,7 +2,7 @@ import categoryList from '../categoryList/CategoryList.component';
 import Component from '../component/Component';
 import emptyList from '../emptyList/EmptyList.component';
 import listSummary from '../listSummary/ListSummary.component';
-import { categoriesNames, formFieldNames } from '../state/app.data';
+import { categoriesNames, formFieldNames } from '../state/app.constants';
 
 class ProductList extends Component {
   _parentElement = document.querySelector('#productList');
@@ -59,8 +59,8 @@ class ProductList extends Component {
     this._parentElement.addEventListener('click', (event) => {
       const btn = event.target.closest('.btn');
       if (!btn) return;
-      const element = event.target.closest('.list-group-item');
       const { action } = btn.dataset;
+      const element = event.target.closest('.list-group-item');
       const { id } = element.dataset;
       handler({ action, id });
     });

@@ -1,5 +1,5 @@
 import Component from '../component/Component';
-import { weightType, formFieldNames } from '../state/app.data';
+import { weightType, formFieldNames } from '../state/app.constants';
 
 const productNameValidator = (productName) => {
   const regexpName = /^[\p{L}\p{N} ()&.-]{3,50}$/gu;
@@ -88,7 +88,7 @@ class Form extends Component {
     return validateErrors;
   }
 
-  addHandlerAddProduct(handler) {
+  addHandlerSendProduct(handler) {
     this._parentElement.addEventListener('submit', function (event) {
       event.preventDefault();
       const formData = [...new FormData(this)];
@@ -106,3 +106,4 @@ class Form extends Component {
 }
 
 export default new Form();
+export { Form };
